@@ -1,10 +1,12 @@
+import SearchBar from "./components/SearchBar";
 import ItemGrid from "./components/ItemGrid";
 import './app.css';
 
 const App = () => {
     return (
         <div className="App">
-            <ItemGrid />
+            <SearchBar />
+            {/* <ItemGrid /> */}
         </div>
     )
 };
