@@ -1,7 +1,10 @@
+import FloatGetter from "./FloatGetter";
+
 const App = () => {
+
     return (
         <div className="App">
-            <h1>Tradeup Helper</h1>
+            <FloatGetter />
         </div>
     )
 };
