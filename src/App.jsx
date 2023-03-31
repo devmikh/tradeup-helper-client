@@ -1,10 +1,10 @@
-import FloatGetter from "./FloatGetter";
+import ItemGrid from "./components/ItemGrid";
+import './app.css';
 
 const App = () => {
-
     return (
         <div className="App">
-            <FloatGetter />
+            <ItemGrid />
         </div>
     )
 };
