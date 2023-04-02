@@ -14,8 +14,7 @@ export const getInventory = createAsyncThunk('inventory/getInventory', (steamId,
             return response.data.data;
         })
         .catch(error => {
-            console.log(error);
-            return rejectWithValue({ data: error.message  });
+            return rejectWithValue(error.message);
         })
 });
 
@@ -27,7 +26,8 @@ const inventorySlice = createSlice({
     },
     extraReducers: builder => {
         builder.addCase(getInventory.pending, state => {
-            state.loading = true
+            state.loading = true,
+            state.error = ''
         });
         builder.addCase(getInventory.fulfilled, (state, action) => {
             state.loading = false;
@@ -37,7 +37,7 @@ const inventorySlice = createSlice({
         builder.addCase(getInventory.rejected, (state, action) => {
             state.loading = false;
             state.data = initialState.data;
-            state.error = action.error.message;
+            state.error = action.payload;
         });
     },
 });
