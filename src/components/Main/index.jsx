@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import ItemGrid from "../ItemGrid";
-import TradeupSection from '../TradeupSection';
+import TradeupCreator from '../TradeupCreator';
 import styles from './index.module.css';
 
 const Main = () => {
@@ -8,7 +8,7 @@ const Main = () => {
     return (
         <div className={styles.main}>
             <ItemGrid />
-            <TradeupSection />
+            <TradeupCreator />
         </div> 
         
             

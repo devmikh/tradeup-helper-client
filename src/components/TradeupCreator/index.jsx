@@ -1,10 +1,10 @@
 import { useSelector } from "react-redux";
 import styles from './index.module.css';
 
-const TradeupSection = () => {
+const TradeupCreator = () => {
 
     return (
-        <div className={styles.tradeupContainer}>
+        <div className={styles.tradeupCreatorContainer}>
             <span className={styles.tradeupCreatorPrompt}>Tradeup Creator will be displayed here</span>
         </div> 
         
@@ -12,4 +12,4 @@ const TradeupSection = () => {
     )
 };
 
-export default TradeupSection;
+export default TradeupCreator;
