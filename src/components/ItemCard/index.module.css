@@ -2,13 +2,40 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 1px solid black;
-    border-radius: 18px;
-    padding: 20px;
+    justify-content: center;
+    gap: 6px;
+    width: 200px;
+    height: 260px;
+    border-radius: 4px;
+    font-size: 12px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    color: #ffffff;
+}
+
+.name {
     font-size: 14px;
-    width: 10%;
 }
 
 .selected {
-    background-color: lightblue;
+    border: 3px solid var(--selected-color);
+}
+
+.consumer {
+    background-color: var(--consumer-color);
+}
+
+.industrial {
+    background-color: var(--industrial-color);
+}
+
+.milspec {
+    background-color: var(--milspec-color);
+}
+
+.restricted {
+    background-color: var(--restricted-color);
+}
+
+.classified {
+    background-color: var(--classified-color);
 }

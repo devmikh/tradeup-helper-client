@@ -7,18 +7,40 @@ const ItemCard = (props) => {
 
     const { name, exterior, icon_url, grade, collection } = props;
 
+    let gradeStyle;
+
+    switch (grade) {
+        case 'Consumer':
+            gradeStyle = styles.consumer;
+            break;
+        case 'Industrial':
+            gradeStyle = styles.industrial;
+            break;
+        case 'Mil-Spec':
+            gradeStyle = styles.milspec;
+            break;
+        case 'Restricted':
+            gradeStyle = styles.restricted;
+            break;
+        case 'Classified':
+            gradeStyle = styles.classified;
+            break;
+        default:
+            gradeStyle = styles.consumer;
+    }
+
     const switchSelected = () => {
         setIsSelected(!isSelected);
     }
 
     return (
-        <div className={`${styles.container} ${isSelected ? styles.selected : ''}`} onClick={switchSelected}>
-            <span>{name}</span>
+        <div className={`${styles.container} ${isSelected ? styles.selected : ''} ${gradeStyle}`} onClick={switchSelected}>
+            <span className={styles.name}>{name}</span>
             <span>{exterior}</span>
-            <img src={`${import.meta.env.VITE_ICON_URL}/${icon_url}`} width={128}/>
+            <img src={`${import.meta.env.VITE_ICON_URL}/${icon_url}`} width={180}/>
             <span>{grade}</span>
             <span>{collection}</span>
-            <span>0.000001</span>
+            <span>0.08617806</span>
         </div>
     )
 };

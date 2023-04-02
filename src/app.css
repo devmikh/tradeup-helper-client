@@ -1,3 +1,21 @@
+/* Global variables */
+:root {
+    /* Colors */
+    --selected-color: rgb(255, 251, 0);
+
+    --consumer-color: #89a0bb;
+    --industrial-color: #5e98d9;
+    --milspec-color: #4b69ff;
+    --restricted-color: #8847ff;
+    --classified-color: #d32ee6;
+}
+
 * {
     margin: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    background-color: #919191;
 }
