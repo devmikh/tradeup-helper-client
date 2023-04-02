@@ -21,9 +21,10 @@ const SearchBar = () => {
 
     return (
         <form onSubmit={submitForm} className={styles.form}>
-            <span className={styles.prompt}>Please enter steamID64:</span>
-            <input className={styles.input} name='steamid' onChange={onChange} value={steamId}></input>
-            <button className={styles.button} type='submit'>Get Inventory</button>
+            <div className={styles.inputContainer}>
+                <input className={styles.input} name='steamid' onChange={onChange} value={steamId} placeholder='Please enter SteamID64'></input>
+                <button className={styles.button} type='submit'>Get Inventory</button>
+            </div>
             <span className={styles.error}>{inventory.error}</span>
         </form>
         

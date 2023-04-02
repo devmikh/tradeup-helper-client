@@ -1,7 +1,8 @@
 import { Provider } from 'react-redux';
 import store from './store/store';
 import SearchBar from "./components/SearchBar";
-import ItemGrid from "./components/ItemGrid";
+import Main from './components/Main'
+
 import './app.css';
 
 const App = () => {
@@ -9,7 +10,7 @@ const App = () => {
         <Provider store={store}>
             <div className="App">
                 <SearchBar />
-                <ItemGrid />
+                <Main />
             </div>
         </Provider>
     )

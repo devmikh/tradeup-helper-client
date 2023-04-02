@@ -12,6 +12,11 @@
     overflow: auto;
 }
 
+.inventoryMessage {
+    font-size: 30px;
+    font-style: italic;
+}
+
 ::-webkit-scrollbar {
     background-color: rgb(107, 107, 107);
     border-radius: 20px;
