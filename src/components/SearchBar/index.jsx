@@ -1,21 +1,21 @@
-import axios from 'axios';
 import { useState } from 'react';
+import { useSelector } from "react-redux";
+import { dispatch } from '../../store/store';
+import { getInventory } from '../../store/features/inventorySlice';
 
 import styles from './index.module.css';
 
 const SearchBar = () => {
 
-    const { steamId, setSteamId } = useState('');
-    const { error, setError } = useState('');
+    const inventory = useSelector(state => state.inventory);
+    const [ steamId, setSteamId ] = useState('');
+    const [ error, setError ] = useState('');
 
     const submitForm = async (event) => {
         event.preventDefault();
-
-        try {
-            const response = await axios.get('');
-        } catch(error) {
-            setError(error.message);
-        }
+        setError('');
+        dispatch(getInventory(steamId));
+        setError(inventory.error);
     }
 
     const onChange = (event) => {

@@ -1,13 +1,17 @@
+import { Provider } from 'react-redux';
+import store from './store/store';
 import SearchBar from "./components/SearchBar";
 import ItemGrid from "./components/ItemGrid";
 import './app.css';
 
 const App = () => {
     return (
-        <div className="App">
-            <SearchBar />
-            {/* <ItemGrid /> */}
-        </div>
+        <Provider store={store}>
+            <div className="App">
+                <SearchBar />
+                <ItemGrid />
+            </div>
+        </Provider>
     )
 };
 

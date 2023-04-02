@@ -5,6 +5,8 @@
     border: 1px solid black;
     border-radius: 18px;
     padding: 20px;
+    font-size: 14px;
+    width: 10%;
 }
 
 .selected {
