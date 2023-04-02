@@ -22,7 +22,7 @@ const ItemGrid = () => {
                                 name={item.name}
                                 exterior={item.exterior}
                                 icon_url={item.icon_url}
-                                type={item.type}
+                                grade={item.grade}
                                 collection={item.collection}
                             />
                         )

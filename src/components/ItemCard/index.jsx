@@ -5,7 +5,7 @@ const ItemCard = (props) => {
 
     const [isSelected, setIsSelected] = useState(false);
 
-    const { name, exterior, icon_url, type, collection } = props;
+    const { name, exterior, icon_url, grade, collection } = props;
 
     const switchSelected = () => {
         setIsSelected(!isSelected);
@@ -16,7 +16,7 @@ const ItemCard = (props) => {
             <span>{name}</span>
             <span>{exterior}</span>
             <img src={`${import.meta.env.VITE_ICON_URL}/${icon_url}`} width={128}/>
-            <span>{type}</span>
+            <span>{grade}</span>
             <span>{collection}</span>
             <span>0.000001</span>
         </div>
