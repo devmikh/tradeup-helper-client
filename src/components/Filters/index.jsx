@@ -22,7 +22,7 @@ const Filters = () => {
 
     return (
         <div className={styles.filterContainer}>
-            <input name="search" placeholder="Search" className={styles.searchField} />
+            {/* <input name="search" placeholder="Search" className={styles.searchField} /> */}
             <FormControl>
                 <InputLabel id="grade-label">Grade</InputLabel>
                 <Select

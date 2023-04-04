@@ -39,7 +39,7 @@ const ItemCard = (props) => {
             <img src={`${import.meta.env.VITE_ICON_URL}/${icon_url}`} width={180}/>
             <span>{grade}</span>
             <span>{collection}</span>
-            <span>{float}</span>
+            <span className={styles.float}>{float}</span>
         </div>
     )
 };
