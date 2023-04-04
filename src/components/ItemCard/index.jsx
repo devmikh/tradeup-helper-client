@@ -5,8 +5,8 @@ const ItemCard = (props) => {
 
     const [isSelected, setIsSelected] = useState(false);
 
-    const { name, exterior, icon_url, grade, collection } = props;
-
+    const { name, exterior, icon_url, grade, collection, float } = props;
+    console.log(float);
     let gradeStyle;
 
     switch (grade) {
@@ -40,7 +40,7 @@ const ItemCard = (props) => {
             <img src={`${import.meta.env.VITE_ICON_URL}/${icon_url}`} width={180}/>
             <span>{grade}</span>
             <span>{collection}</span>
-            <span>0.08617806</span>
+            <span>{float}</span>
         </div>
     )
 };

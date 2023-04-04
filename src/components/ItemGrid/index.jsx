@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import styles from './index.module.css';
 import ItemCard from '../ItemCard';
+import Filters from "../Filters";
 import MoonLoader from "react-spinners/MoonLoader";
 
 const ItemGrid = () => {
@@ -24,6 +25,7 @@ const ItemGrid = () => {
                     icon_url={item.icon_url}
                     grade={item.grade}
                     collection={item.collection}
+                    float={item.float}
                 />
             )
         });
@@ -36,6 +38,7 @@ const ItemGrid = () => {
 
     return (
         <div className={styles.inputContainer}>
+            {inventory.data ? <Filters /> : null}  
             <div className={styles.itemsContainer}>
                 {content}
             </div>

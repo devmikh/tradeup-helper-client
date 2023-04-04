@@ -1,0 +1,14 @@
+.filterContainer {
+    display: flex;
+}
+
+.searchField {
+    outline: none;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+}
+
+.select {
+    width: 200px;
+}
