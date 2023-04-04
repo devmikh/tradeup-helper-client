@@ -16,10 +16,11 @@ const ItemGrid = () => {
             aria-label="Loading Spinner"
             data-testid="loader"
         />;
-    } else if (!inventory.loading && inventory.data) {
-        content = inventory.data.map(item => {
+    } else if (!inventory.loading && inventory.filteredData) {
+        content = inventory.filteredData.map(item => {
             return (
                 <ItemCard
+                    key={item.asset_id}
                     name={item.name}
                     exterior={item.exterior}
                     icon_url={item.icon_url}
@@ -38,7 +39,7 @@ const ItemGrid = () => {
 
     return (
         <div className={styles.inputContainer}>
-            {inventory.data ? <Filters /> : null}  
+            {inventory.filteredData ? <Filters /> : null}  
             <div className={styles.itemsContainer}>
                 {content}
             </div>

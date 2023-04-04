@@ -6,7 +6,6 @@ const ItemCard = (props) => {
     const [isSelected, setIsSelected] = useState(false);
 
     const { name, exterior, icon_url, grade, collection, float } = props;
-    console.log(float);
     let gradeStyle;
 
     switch (grade) {

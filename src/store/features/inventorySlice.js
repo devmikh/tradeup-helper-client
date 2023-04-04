@@ -1,9 +1,17 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { getCollections, filterData } from "../../utils/filterHelpers";
 
 const initialState = {
     loading: false,
-    data: null,
+    initialData: null,
+    filteredData: null,
+    collections: null,
+    filters: {
+        gradeFilter: 'any',
+        collectionFilter: 'any',
+        sortBy: 'recent'
+    },
     error: ''
 };
 
@@ -22,7 +30,21 @@ const inventorySlice = createSlice({
     name: 'inventory',
     initialState: initialState,
     reducers: {
-
+        // filter: (state, action) => {
+        //     state.filteredData = filterData(initialData, { gradeFilter, collectionFilter });
+        // },
+        setCollectionFilter: (state, action) => {
+            state.filters.collectionFilter = action.payload;
+            state.filteredData = filterData(state.initialData, state.filters);
+        },
+        setGradeFilter: (state, action) => {
+            state.filters.gradeFilter = action.payload;
+            state.filteredData = filterData(state.initialData, state.filters);
+        },
+        setSortBy: (state, action) => {
+            state.filters.sortBy = action.payload;
+            state.filteredData = filterData(state.initialData, state.filters);
+        }
     },
     extraReducers: builder => {
         builder.addCase(getInventory.pending, state => {
@@ -30,16 +52,21 @@ const inventorySlice = createSlice({
             state.error = ''
         });
         builder.addCase(getInventory.fulfilled, (state, action) => {
+            state.collections = getCollections(action.payload);
             state.loading = false;
-            state.data = action.payload;
+            state.initialData = action.payload;
+            state.filteredData = action.payload;
             state.error = '';
         });
         builder.addCase(getInventory.rejected, (state, action) => {
             state.loading = false;
-            state.data = initialState.data;
+            state.initialData = initialState.initialData;
+            state.filteredData = initialState.filteredData;
             state.error = action.payload;
         });
     },
 });
+
+export const { setCollectionFilter, setGradeFilter, setSortBy } = inventorySlice.actions;
 
 export default inventorySlice.reducer;
