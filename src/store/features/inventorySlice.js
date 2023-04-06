@@ -1,19 +1,20 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { switchSelectedById, calculateAvgFloat, removeSelected } from "../../utils/inventoryHelpers";
 import { getCollections, filterData } from "../../utils/filterHelpers";
-import { switchSelectedById, getSelectedItems } from "../../utils/inventoryHelpers";
 
 const initialState = {
     loading: false,
     initialData: null,
     filteredData: null,
-    selectedItems: null,
+    selectedItems: [],
     collections: null,
     filters: {
         gradeFilter: 'any',
         collectionFilter: 'any',
         sortBy: 'recent'
     },
+    avgFloat: 0,
     error: ''
 };
 
@@ -45,9 +46,20 @@ const inventorySlice = createSlice({
             state.filteredData = filterData(state.initialData, state.filters);
         },
         switchSelected: (state, action) => {
-            switchSelectedById(state.initialData, action.payload);
-            state.selectedItems = getSelectedItems(state.initialData);
+            if (state.selectedItems.length >= 10 && !action.payload.selected) {
+                console.log('You cannot put more than 10 items into a tradeup');
+            } else {
+                switchSelectedById(state.initialData, action.payload.asset_id, state.selectedItems);
+            }
             state.filteredData = filterData(state.initialData, state.filters);
+            state.avgFloat = calculateAvgFloat(state.selectedItems);
+        },
+        clearSelectedItems: (state, action) => {
+            state.selectedItems = [];
+            if (state.initialData) {
+                removeSelected(state.initialData);
+                state.filteredData = filterData(state.initialData, state.filters);
+            }
         }
     },
     extraReducers: builder => {
@@ -71,6 +83,6 @@ const inventorySlice = createSlice({
     },
 });
 
-export const { setCollectionFilter, setGradeFilter, setSortBy, switchSelected } = inventorySlice.actions;
+export const { setCollectionFilter, setGradeFilter, setSortBy, switchSelected, clearSelectedItems } = inventorySlice.actions;
 
 export default inventorySlice.reducer;

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useSelector } from "react-redux";
 import { dispatch } from '../../store/store';
-import { getInventory } from '../../store/features/inventorySlice';
+import { getInventory, clearSelectedItems } from '../../store/features/inventorySlice';
 
 import styles from './index.module.css';
 
@@ -12,6 +12,7 @@ const SearchBar = () => {
 
     const submitForm = async (event) => {
         event.preventDefault();
+        dispatch(clearSelectedItems());
         dispatch(getInventory(steamId));
     }
 
