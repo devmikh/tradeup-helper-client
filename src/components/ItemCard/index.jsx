@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import styles from './index.module.css';
+import { switchSelected } from '../../store/features/inventorySlice';
+import { dispatch } from '../../store/store';
 
 const ItemCard = (props) => {
 
-    const [isSelected, setIsSelected] = useState(false);
+    // const [isSelected, setIsSelected] = useState(false);
 
-    const { name, exterior, icon_url, grade, collection, float } = props;
+    const { asset_id, name, exterior, icon_url, grade, collection, float, selected } = props;
     let gradeStyle;
 
     switch (grade) {
@@ -28,12 +30,12 @@ const ItemCard = (props) => {
             gradeStyle = styles.consumer;
     }
 
-    const switchSelected = () => {
-        setIsSelected(!isSelected);
+    const toggleSelected = (asset_id) => {
+        dispatch(switchSelected(asset_id));
     }
-
+    
     return (
-        <div className={`${styles.container} ${isSelected ? styles.selected : ''} ${gradeStyle}`} onClick={switchSelected}>
+        <div className={`${styles.container} ${selected ? styles.selected : ''} ${gradeStyle}`} onClick={() => toggleSelected(asset_id)}>
             <span className={styles.name}>{name}</span>
             <span>{exterior}</span>
             <img src={`${import.meta.env.VITE_ICON_URL}/${icon_url}`} width={180}/>

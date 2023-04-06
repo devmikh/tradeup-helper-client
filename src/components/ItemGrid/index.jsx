@@ -21,12 +21,14 @@ const ItemGrid = () => {
             return (
                 <ItemCard
                     key={item.asset_id}
+                    asset_id={item.asset_id}
                     name={item.name}
                     exterior={item.exterior}
                     icon_url={item.icon_url}
                     grade={item.grade}
                     collection={item.collection}
                     float={item.float}
+                    selected={item.selected}
                 />
             )
         });

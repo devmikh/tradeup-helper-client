@@ -1,11 +1,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { getCollections, filterData } from "../../utils/filterHelpers";
+import { switchSelectedById, getSelectedItems } from "../../utils/inventoryHelpers";
 
 const initialState = {
     loading: false,
     initialData: null,
     filteredData: null,
+    selectedItems: null,
     collections: null,
     filters: {
         gradeFilter: 'any',
@@ -30,9 +32,6 @@ const inventorySlice = createSlice({
     name: 'inventory',
     initialState: initialState,
     reducers: {
-        // filter: (state, action) => {
-        //     state.filteredData = filterData(initialData, { gradeFilter, collectionFilter });
-        // },
         setCollectionFilter: (state, action) => {
             state.filters.collectionFilter = action.payload;
             state.filteredData = filterData(state.initialData, state.filters);
@@ -43,6 +42,11 @@ const inventorySlice = createSlice({
         },
         setSortBy: (state, action) => {
             state.filters.sortBy = action.payload;
+            state.filteredData = filterData(state.initialData, state.filters);
+        },
+        switchSelected: (state, action) => {
+            switchSelectedById(state.initialData, action.payload);
+            state.selectedItems = getSelectedItems(state.initialData);
             state.filteredData = filterData(state.initialData, state.filters);
         }
     },
@@ -67,6 +71,6 @@ const inventorySlice = createSlice({
     },
 });
 
-export const { setCollectionFilter, setGradeFilter, setSortBy } = inventorySlice.actions;
+export const { setCollectionFilter, setGradeFilter, setSortBy, switchSelected } = inventorySlice.actions;
 
 export default inventorySlice.reducer;
